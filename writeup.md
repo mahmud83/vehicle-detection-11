@@ -17,10 +17,10 @@ The goals / steps of this project are the following:
 [image2]: ./writeup_dir/hog2.png
 [image3]: ./writeup_dir/slide1.png
 [image4]: ./writeup_dir/pipeline1.png
-[image5]: ./writeup_dir/bboxes_and_heat.png
-[image6]: ./writeup_dir/labels_map.png
-[image7]: ./writeup_dir/output_bboxes.png
-[video1]: ./project_video.mp4
+[image5]: ./writeup_dir/heat.png
+[image6]: ./writeup_dir/label.png
+[image7]: ./writeup_dir/output.png
+[video1]: ./output_images/project_video_output.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 
@@ -45,9 +45,9 @@ I then explored different color spaces and different `skimage.hog()` parameters 
 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=11`, `pixels_per_cell=(16, 16)` and `cells_per_block=(2, 2)`:
 
-![alt text][image1]
+![Hog image input][image1]
 
-![alt text][image2]
+![Hog image output][image2]
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
@@ -66,13 +66,13 @@ I have implemented function slide_window() in code block number 4 as a part of S
 For this project, we are given input video in which car is being driven in leftmost lane and all other vehicles to be detected are in right lane. Additionally, the chances of finding cars are high in lower half of the image. Hence, the area of interest of video image is in right bottom quadrant and hence we choose window parameters to reflect the same.
 Since the percentage of window overlap directly affects the number of windows to be searched, I carefully chose the value by doing some experiments.
 
-![alt text][image3]
+![Sliding window output][image3]
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 I used the sample images from test images directory to check if each stage of vehicle detection is working as expected or not. In order to remove the false positive, I followed the approach of adding heat to all pixels of hot windows and taking a subset of that mega window using particular threshold. Once, I had threshold result, I modified the threshold value to reflect accurate detection of cars in images/video.
 
-![alt text][image4]
+![Sample pipeline][image4]
 
 ---
 
@@ -80,23 +80,28 @@ I used the sample images from test images directory to check if each stage of ve
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./project_video_output.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
+
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.
 
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
+Initially when I used the pipeline to discover the vehicles in complete video, I got few false positives. To encounter that and making use of the fact that each second of video has over 60 frames, I stored bounding boxes of last 30 frames locally and averaged them over to find one big matching box. This technique ensured that boxes grow bigger or smaller smoothly.  
 
-### Here are six frames and their corresponding heatmaps:
+Here are few of the test images output when put through pipeline.
+
+### Here are three frames and their corresponding heatmaps:
 
 ![alt text][image5]
 
 ### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
+
 ![alt text][image6]
 
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
+
 ![alt text][image7]
 
 ---
@@ -105,5 +110,7 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.
+One of the principal reason, my pipeline is not practical is abnormal amount of process time. After hunting and trying all sorts of solutions from Udacity Forum, I used one which helped cut processing time by 1 second per iteration (%25 compared to original). Given more time, I would invest my energy to find faster algorithm to predict car and non car images.
+
+Another bottleneck is my choice of configuration. Since for this project we are given a video in which traffic is only on one side of road and not in center or left, I have used a configuration which when used for cars on other side will be highly ineffective.
 
