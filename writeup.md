@@ -17,8 +17,8 @@ The goals / steps of this project are the following:
 [image2]: ./writeup_dir/hog2.png
 [image3]: ./writeup_dir/slide1.png
 [image4]: ./writeup_dir/pipeline1.png
-[image5]: ./writeup_dir/heat.png
-[image6]: ./writeup_dir/label.png
+[image5]: ./writeup_dir/heat.PNG
+[image6]: ./writeup_dir/label.PNG
 [image7]: ./writeup_dir/output.png
 [video1]: ./output_images/project_video_output.mp4
 
@@ -94,15 +94,21 @@ Here are few of the test images output when put through pipeline.
 
 ### Here are three frames and their corresponding heatmaps:
 
-![alt text][image5]
+
+![Heat images][image5]
+
 
 ### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
 
-![alt text][image6]
+
+![Label images][image6]
+
 
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
 
-![alt text][image7]
+
+![Bounding boxes][image7]
+
 
 ---
 
