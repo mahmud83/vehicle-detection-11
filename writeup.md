@@ -112,9 +112,9 @@ Here are few of the test images output when put through pipeline.
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 One of the principal reason, my pipeline is not practical is abnormal amount of process time. After hunting and trying all sorts of solutions from Udacity Forum, I used one which helped cut processing time by 1 second per iteration (%25 compared to original). Given more time, I would invest my energy to find faster algorithm to predict car and non car images.
 
