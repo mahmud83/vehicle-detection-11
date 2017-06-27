@@ -14,9 +14,9 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 [image1]: ./writeup_dir/hog1.png
-[image2]: ./writeup_dir/hog2.jpg
-[image3]: ./writeup_dir/slide1.jpg
-[image4]: ./writeup_dir/pipeline1.jpg
+[image2]: ./writeup_dir/hog2.png
+[image3]: ./writeup_dir/slide1.png
+[image4]: ./writeup_dir/pipeline1.png
 [image5]: ./writeup_dir/bboxes_and_heat.png
 [image6]: ./writeup_dir/labels_map.png
 [image7]: ./writeup_dir/output_bboxes.png
@@ -80,7 +80,7 @@ I used the sample images from test images directory to check if each stage of ve
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
-Here's a [link to my video result](./output_images/project_video_output.mp4)
+Here's a [link to my video result](./project_video.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
@@ -106,3 +106,4 @@ Here's an example result showing the heatmap from a series of frames of video, t
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.
+
